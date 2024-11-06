@@ -98,3 +98,23 @@ class ShoppingCart:
         """Calculates the total price of items in the cart."""
         return sum([item.price for item in self.items])
 
+
+class Discount:
+    """Handles discount calculations for loyalty and bulk purchases."""
+    
+    def __init__(self):
+        """Initializes the discount calculation handler."""
+        self.discount_percentage = 0
+    
+    def apply_loyalty_discount(self, customer):
+        """Applies a loyalty discount if the customer is a loyalty member."""
+        if customer.is_loyalty_member:
+            self.discount_percentage = 10
+        return self.discount_percentage
+    
+    def apply_bulk_discount(self, cart):
+        """Applies a bulk discount for 5 or more e-books in the cart."""
+        if len(cart.items) >= 5:
+            self.discount_percentage = max(self.discount_percentage, 20)  # Bulk purchase gets a 20% discount
+        return self.discount_percentage
+

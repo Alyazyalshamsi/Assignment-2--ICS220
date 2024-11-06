@@ -67,3 +67,14 @@ class Customer:
         """Removes the customer from the loyalty program."""
         self.is_loyalty_member = False
 
+class ShoppingCart:
+    """Represents a shopping cart for a customer."""
+    
+    def __init__(self):
+        """Initializes an empty shopping cart."""
+        self.items = []
+    
+    def add_item(self, ebook):
+        """Adds an e-book to the shopping cart."""
+        if isinstance(ebook, EBook):
+            self.items.append(ebook)

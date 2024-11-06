@@ -129,7 +129,7 @@ class Order:
         self.vat_rate = vat_rate
         self.total = 0
         self.discount_applied = 0
-        self.invoice = "
+        self.invoice = ""
     
     def apply_discounts(self):
         """Applies discounts based on loyalty or bulk purchase."""
@@ -143,3 +143,20 @@ class Order:
         """Calculates the VAT for the order."""
         return self.total * (self.vat_rate / 100)
     
+    def generate_invoice(self):
+        """Generates the invoice for the order."""
+        vat = self.calculate_vat()
+        final_amount = self.total + vat
+        self.invoice = (
+            f"Invoice:\n"
+            f"Customer: {self.customer.name}\n"
+            f"Items: {', '.join(self.cart.get_cart_items())}\n"
+            f"Subtotal: {self.total:.2f} USD\n"
+            f"Discount Applied: {self.discount_applied}%\n"
+            f"VAT ({self.vat_rate}%): {vat:.2f} USD\n"
+            f"Total: {final_amount:.2f} USD\n"
+            f"\n"  # Adding a newline here for space
+            f"-------------------------------\n"
+            f"Thank you for shopping with us!"
+        )
+        return self.invoice

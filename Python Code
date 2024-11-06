@@ -242,3 +242,35 @@ def test_bulk_purchase():
     print("Test Case 3: Bulk Purchase (5 or More E-books)")
     print(invoice)
     print(f"-------------------------------\n")
+
+
+# Test Case 4: Customer Not in Loyalty Program, Bought 3 Items (No Discount)
+def test_non_loyalty_3_items():
+    """Test a customer who is not in loyalty program and buys 3 items, no discount."""
+    ebook1 = EBook("Dark Night", "William George", "2012-11-01", "Horror", 20)
+    ebook2 = EBook("Smart Brain", "Rose Flo", "2020-05-21", "Biology", 25)
+    ebook3 = EBook("The Robot", "Grace Pradem", "2011-01-13", "AI", 30)
+    
+    customer = Customer("Alyazya", "Alyazya@sample.com", "123456789")
+    
+    cart = ShoppingCart()
+    cart.add_item(ebook1)
+    cart.add_item(ebook2)
+    cart.add_item(ebook3)  # 3 items added to cart
+    
+    discount = Discount()  # Initialize Discount instance
+    order = Order(customer, cart, discount)  # Pass discount instance
+    order.apply_discounts()
+    invoice = order.generate_invoice()
+    
+    print("Test Case 4: Non-Loyalty Member with 3 Items")
+    print(invoice)
+    print(f"-------------------------------\n")
+
+
+# Run all test cases
+test_regular_purchase()
+test_loyalty_member_purchase()
+test_bulk_purchase()
+test_non_loyalty_3_items()
+

@@ -39,3 +39,31 @@ class EBook:
             self.genre = genre
         if price is not None:
             self.price = price
+
+class Customer:
+    """Represents a customer in the bookstore."""
+    
+    def __init__(self, name, email, phone_number):
+        """Initializes a customer with their details."""
+        self.name = name
+        self.email = email
+        self.phone_number = phone_number
+        self.is_loyalty_member = False
+    
+    def get_details(self:
+        """Returns customer details."""
+        return {
+            "Name": self.name,
+            "Email": self.email,
+            "Phone Number": self.phone_number,
+            "Loyalty Member": self.is_loyalty_member
+        }
+    
+    def join_loyalty_program(self):
+        """Enrolls the customer into the loyalty program."""
+        self.is_loyalty_member = True
+    
+    def leave_loyalty_program(self):
+        """Removes the customer from the loyalty program."""
+        self.is_loyalty_member = False
+

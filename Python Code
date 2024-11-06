@@ -189,8 +189,30 @@ def test_regular_purchase():
     order.apply_discounts()
     invoice = order.generate_invoice()
     
-    print("Test Case: Regular Purchase (No Loyalty Program)")
+    print("Test Case 1: Regular Purchase (No Loyalty Program)")
     print(invoice)
     print(f"-------------------------------\n")
 
 
+# Test Case 2: Loyalty Member Purchase (10% Discount)
+def test_loyalty_member_purchase():
+    """Test a customer who is a loyalty member with a 10% discount."""
+    ebook1 = EBook("It Ends With Us", "Colleen Hoover", "2022-01-01", "Romance", 20)
+    ebook2 = EBook("Wonder", "Rj Palacio", "2023-05-01", "Novel", 25)
+    
+    customer = Customer("Alyazya", "Alyazya@sample.com", "123456789")
+    customer.join_loyalty_program()  # Adding the customer to the loyalty program
+    
+    cart = ShoppingCart()
+    cart.add_item(ebook1)
+    cart.add_item(ebook2)
+    
+    discount = Discount()  # Initialize Discount instance
+    order = Order(customer, cart, discount)  # Pass discount instance
+    order.apply_discounts()
+    invoice = order.generate_invoice()
+    
+    print("Test Case 2: Loyalty Member Purchase (10% Discount)")
+    print(invoice)
+    print(f"-------------------------------\n")
+    

@@ -216,3 +216,29 @@ def test_loyalty_member_purchase():
     print(invoice)
     print(f"-------------------------------\n")
     
+# Test Case 3: Bulk Purchase (5 or More E-books, with 20% Discount)
+def test_bulk_purchase():
+    """Test bulk purchase of 5 or more e-books with 20% discount."""
+    ebook1 = EBook("Dark Night", "William George", "2012-11-01", "Horror", 20)
+    ebook2 = EBook("Smart Brain", "Rose Flo", "2020-05-21", "Biology", 25)
+    ebook3 = EBook("The Robot", "Grace Pradem", "2011-01-13", "AI", 30)
+    ebook4 = EBook("Islam On Earth", "Deven White", "2024-08-15", "AI", 35)
+    ebook5 = EBook("Culture Of UAE", "Hazel Youth", "2015-11-12", "History", 28)
+    
+    customer = Customer("Alyazya", "Alyazya@sample.com", "123456789")
+    
+    cart = ShoppingCart()
+    cart.add_item(ebook1)
+    cart.add_item(ebook2)
+    cart.add_item(ebook3)
+    cart.add_item(ebook4)
+    cart.add_item(ebook5)  # Adding 5 items for bulk discount
+    
+    discount = Discount()  # Initialize Discount instance
+    order = Order(customer, cart, discount)  # Pass discount instance
+    order.apply_discounts()
+    invoice = order.generate_invoice()
+    
+    print("Test Case 3: Bulk Purchase (5 or More E-books)")
+    print(invoice)
+    print(f"-------------------------------\n")

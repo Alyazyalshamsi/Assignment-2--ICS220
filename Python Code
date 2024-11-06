@@ -78,3 +78,23 @@ class ShoppingCart:
         """Adds an e-book to the shopping cart."""
         if isinstance(ebook, EBook):
             self.items.append(ebook)
+
+    def remove_item(self, ebook):
+        """Removes an e-book from the shopping cart."""
+        if ebook in self.items:
+            self.items.remove(ebook)
+    
+    def update_quantity(self, ebook, quantity):
+        """Updates the quantity of a specific e-book in the cart (simulated by adding/removing)."""
+        self.remove_item(ebook)
+        for _ in range(quantity):
+            self.add_item(ebook)
+    
+    def get_cart_items(self):
+        """Returns a list of all e-books in the cart."""
+        return [str(item) for item in self.items]
+    
+    def calculate_total(self):
+        """Calculates the total price of items in the cart."""
+        return sum([item.price for item in self.items])
+

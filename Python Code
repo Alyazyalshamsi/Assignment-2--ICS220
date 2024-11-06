@@ -160,3 +160,15 @@ class Order:
             f"Thank you for shopping with us!"
         )
         return self.invoice
+
+class Invoice:
+    """Handles invoice generation and printing."""
+    
+    def __init__(self, order):
+        """Initializes an invoice with the order details."""
+        self.order = order
+    
+    def print_invoice(self):
+        """Prints the invoice for the given order."""
+        print(self.order.generate_invoice())
+

@@ -50,7 +50,7 @@ class Customer:
         self.phone_number = phone_number
         self.is_loyalty_member = False
     
-    def get_details(self:
+    def get_details(self):
         """Returns customer details."""
         return {
             "Name": self.name,

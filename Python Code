@@ -118,3 +118,28 @@ class Discount:
             self.discount_percentage = max(self.discount_percentage, 20)  # Bulk purchase gets a 20% discount
         return self.discount_percentage
 
+class Order:
+    """Represents an order placed by a customer."""
+    
+    def __init__(self, customer, cart, discount, vat_rate=8):
+        """Initializes an order with a customer, cart, and VAT rate."""
+        self.customer = customer
+        self.cart = cart
+        self.discount = discount
+        self.vat_rate = vat_rate
+        self.total = 0
+        self.discount_applied = 0
+        self.invoice = "
+    
+    def apply_discounts(self):
+        """Applies discounts based on loyalty or bulk purchase."""
+        loyalty_discount = self.discount.apply_loyalty_discount(self.customer)
+        bulk_discount = self.discount.apply_bulk_discount(self.cart)
+        self.discount_applied = max(loyalty_discount, bulk_discount)
+        self.total = self.cart.calculate_total()
+        self.total -= self.total * (self.discount_applied / 100)
+    
+    def calculate_vat(self):
+        """Calculates the VAT for the order."""
+        return self.total * (self.vat_rate / 100)
+    
